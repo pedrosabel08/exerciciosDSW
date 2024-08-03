@@ -36,3 +36,18 @@ function mascaraTelefone(elemento) {
 
     elemento.value = valor;
 }
+
+function consultaCEP(cep) {
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("rua").value = data.logradouro;
+            document.getElementById("bairro").value = data.bairro;
+            document.getElementById("cidade").value = data.localidade;
+            document.getElementById("estado").value = data.uf;
+        })
+        .catch(error => console.error(error));
+
+}
